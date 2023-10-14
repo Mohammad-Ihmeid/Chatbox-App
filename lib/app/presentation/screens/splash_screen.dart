@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:chatbox_app/core/global/routes/app_routes.dart';
 import 'package:chatbox_app/core/global/theme/app_assets.dart';
 import 'package:chatbox_app/core/global/theme/responsive.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goNext() {
-    //Navigator.pushNamed(context, '/second');
+    Navigator.pushReplacementNamed(context, Routes.onboarding);
   }
 
   @override

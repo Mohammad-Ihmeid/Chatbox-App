@@ -36,6 +36,72 @@ class Responsive {
     if (deviceHeight == 0 || screenSize.height == 0) return 0.0;
     return (deviceHeight * (height / 100));
   }
+
+  // responsive bottom padding
+  double setBottomPadding({required double padding}) {
+    if (screenPadding.bottom == 0 || padding == 0) return 0.0;
+    return screenPadding.bottom + padding;
+  }
+
+  // responsive Left Padding
+  double setLeftPadding({required double padding}) {
+    if (screenPadding.left != 0 || padding == 0) return 0.0;
+    return screenPadding.left + padding;
+  }
+
+  // responsive right padding
+  double setRightPadding({required double padding}) {
+    if (padding == 0) return 0.0;
+    return screenPadding.right + padding;
+  }
+
+  // responsive top padding
+  double setTopPadding({required double padding}) {
+    if (screenPadding.top == 0 || padding == 0) return 0.0;
+    return screenPadding.top + padding - 20;
+  }
+
+  //  set padding from all sides
+  double setPadding({required double padding}) {
+    final double bottom = screenPadding.bottom;
+    final double top = screenPadding.top;
+    final double left = screenPadding.left;
+    final double right = screenPadding.right;
+    if (bottom == 0 || top == 0 || left == 0 || right == 0 || padding == 0) {
+      return 0.0;
+    }
+    return (bottom + top + left + right) + padding;
+  }
+
+  // scaling the font size based on scale factor - use for scaling fontSize
+  double setFontSize({required double fontSize}) {
+    final double sWidth = screenSize.width;
+    final double sHeight = screenSize.height;
+    // if i divide the deviceHeight / sHeight.. than the font will adjust it's self inside box
+    // but in blow case it is working only the font size.
+
+    final double scaleH = sHeight / deviceHeight;
+    final double scaleW = sWidth / deviceWidth;
+
+    // final double scaleH = deviceHeight / sHeight;
+    // final double scaleW = deviceWidth / sWidth;
+    final double scale = _max(scaleW, scaleH);
+    final double textScaleFactor = MediaQuery.textScaleFactorOf(context);
+
+    if (deviceWidth == 0 || deviceHeight == 0 || sWidth == 0 || sHeight == 0) {
+      return 0.0;
+    }
+
+    return fontSize * scale * textScaleFactor;
+  }
+
+  double _max(double first, double second) {
+    return first > second ? first : second;
+  }
+
+  // double _min(double first, double second) {
+  //   return first < second ? first : second;
+  // }
 }
 
 // Extension
@@ -54,5 +120,54 @@ extension ExtensionOnHeight on num {
         context: context,
       ).setHeight(
         height: toDouble(),
+      );
+}
+
+// Paddings
+extension ExtensionOnPadding on num {
+  // All Padding
+  double sP(BuildContext context) =>
+      Responsive.getInstance(context: context).setPadding(
+        padding: toDouble(),
+      );
+}
+
+extension ExtensionOnLeftPadding on num {
+  // Left Padding
+  double sLP(BuildContext context) =>
+      Responsive.getInstance(context: context).setLeftPadding(
+        padding: toDouble(),
+      );
+}
+
+extension ExtensionOnRightPadding on num {
+  // Right padding
+  double sRP(BuildContext context) =>
+      Responsive.getInstance(context: context).setRightPadding(
+        padding: toDouble(),
+      );
+}
+
+extension ExtensionOnTopPadding on num {
+  // Top Padding
+  double sTP(BuildContext context) =>
+      Responsive.getInstance(context: context).setTopPadding(
+        padding: toDouble(),
+      );
+}
+
+extension ExtensionOnBottomPadding on num {
+  // Bottom Padding
+  double sBP(BuildContext context) =>
+      Responsive.getInstance(context: context).setBottomPadding(
+        padding: toDouble(),
+      );
+}
+
+extension ExtensionOnFontSize on num {
+  // Font
+  double sF(BuildContext context) =>
+      Responsive.getInstance(context: context).setFontSize(
+        fontSize: toDouble(),
       );
 }

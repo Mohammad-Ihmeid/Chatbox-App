@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chatbox App',
       debugShowCheckedModeBanner: false,
-      theme: getThemeDataLight(),
+      theme: getThemeDataLight(context),
       initialRoute: AppPages.initial,
       routes: AppPages.routes,
     );
