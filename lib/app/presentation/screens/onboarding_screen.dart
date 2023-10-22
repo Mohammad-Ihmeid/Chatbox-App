@@ -1,4 +1,6 @@
-import 'package:chatbox_app/app/presentation/components/onboarding_components/social_components.dart';
+import 'package:chatbox_app/app/presentation/components/widget/or_widget.dart';
+import 'package:chatbox_app/app/presentation/components/widget/social_widget.dart';
+import 'package:chatbox_app/core/global/routes/app_routes.dart';
 import 'package:chatbox_app/core/global/theme/app_assets.dart';
 import 'package:chatbox_app/core/global/theme/app_color/app_color_light.dart';
 import 'package:chatbox_app/core/global/theme/responsive.dart';
@@ -59,40 +61,39 @@ class OnboardingScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SocialComponents(svgIcon: IconsAssets.facebookIcon),
+                      const SocialWidget(svgIcon: IconsAssets.facebookIcon),
                       SizedBox(width: 5.sW(context)),
-                      const SocialComponents(svgIcon: IconsAssets.googleIcon),
+                      const SocialWidget(svgIcon: IconsAssets.googleIcon),
                       SizedBox(width: 5.sW(context)),
-                      const SocialComponents(svgIcon: IconsAssets.appleIcon)
+                      const SocialWidget(svgIcon: IconsAssets.appleIcon)
                     ],
                   ),
                   SizedBox(
                     height: 3.sH(context),
                   ),
-                  Row(mainAxisSize: MainAxisSize.min, children: [
-                    const Expanded(
-                      child: Divider(
-                        color: AppColorsLight.dividerColor,
+                  const ORWidget(),
+                  SizedBox(height: 3.sH(context)),
+                  Theme(
+                    data: ThemeData(
+                      elevatedButtonTheme: ElevatedButtonThemeData(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColorsLight.colorWhite,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text("OR",
-                          style: Theme.of(context).textTheme.titleSmall),
-                    ),
-                    const Expanded(
-                        child: Divider(color: AppColorsLight.dividerColor))
-                  ]),
-                  SizedBox(height: 3.sH(context)),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 12),
-                      child: Center(
-                        child: Text(
-                          "Sign up with mail",
-                          style: Theme.of(context).textTheme.titleMedium,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 2, vertical: 12),
+                        child: Center(
+                          child: Text(
+                            "Sign up with mail",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
                         ),
                       ),
                     ),
@@ -106,7 +107,8 @@ class OnboardingScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.displayMedium,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () =>
+                            Navigator.pushNamed(context, Routes.signIn),
                         child: const Text(
                           "Log in",
                           style: TextStyle(color: AppColorsLight.colorWhite),

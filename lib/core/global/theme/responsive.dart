@@ -39,7 +39,7 @@ class Responsive {
 
   // responsive bottom padding
   double setBottomPadding({required double padding}) {
-    if (screenPadding.bottom == 0 || padding == 0) return 0.0;
+    if (padding == 0) return 0.0;
     return screenPadding.bottom + padding;
   }
 
