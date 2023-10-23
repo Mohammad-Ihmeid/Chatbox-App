@@ -85,7 +85,8 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.pushNamed(context, Routes.signUp),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 2, vertical: 12),

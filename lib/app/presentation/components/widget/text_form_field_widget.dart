@@ -1,3 +1,4 @@
+import 'package:chatbox_app/core/global/theme/app_color/app_color_light.dart';
 import 'package:flutter/material.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
@@ -19,6 +20,7 @@ class TextFormFieldWidget extends StatelessWidget {
       controller: controller,
       textInputAction: textInputAction,
       keyboardType: keyboardType,
+      cursorColor: AppColorsLight.primaryColor,
       style: Theme.of(context).textTheme.titleMedium,
       decoration: InputDecoration(
         labelText: labelText,
